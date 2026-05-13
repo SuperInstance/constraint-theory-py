@@ -1,0 +1,3 @@
+include README.md
+recursive-include constraint_theory *.py
+recursive-include tests *.py

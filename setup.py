@@ -1,0 +1,35 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="constraint-theory",
+    version="0.3.0",
+    description="Pure Python Constraint Theory — temporal constraints, Eisenstein lattices, adaptive tolerance, PLATO tiles, baton shards",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
+    author="SuperInstance",
+    author_email="contact@superinstance.ai",
+    license="MIT",
+    packages=find_packages(include=["constraint_theory", "constraint_theory.*"]),
+    python_requires=">=3.8",
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Science/Research",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
+        "Topic :: Scientific/Engineering :: Mathematics",
+        "Topic :: Scientific/Engineering :: Artificial Intelligence",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Typing :: Typed",
+    ],
+    extras_require={
+        "dev": ["pytest>=7.0", "pytest-cov>=4.0"],
+    },
+)

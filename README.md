@@ -1,0 +1,90 @@
+# Constraint Theory v0.3.0
+
+Pure Python constraint satisfaction toolkit — temporal constraints, Eisenstein lattices, adaptive tolerance, PLATO tiles, and baton shards.
+
+```
+pip install constraint-theory
+```
+
+Or for development:
+
+```
+git clone https://github.com/SuperInstance/constraint-theory-py
+cd constraint-theory-py
+pip install -e ".[dev]"
+pytest
+```
+
+## What's New in v0.3.0
+
+### 1. Eisenstein Lattice Operations (`constraint_theory.eisenstein`)
+Snap any 2-D point to the nearest A₂ lattice point with a guaranteed worst-case error of ~0.577 (covering radius). Includes full arithmetic on Eisenstein integers, Weyl chamber classification, dodecet encoding (12-bit compressed snap metadata), and norm computation.
+
+```python
+from constraint_theory.eisenstein import snap, A2Point, encode, decode
+
+pt = snap(0.5, 0.3)           # A2Point(a, b)
+d = encode(1.2, 0.8)          # 12-bit Dodecet
+err_lvl, angle, ch, safe = decode(d)
+```
+
+### 2. Temporal Constraints (`constraint_theory.temporal`)
+Constraint propagation with exponential time decay. The deadband funnel narrows over time; anomaly spikes trigger re-widening. Model includes chirality (Weyl chamber commitment), prediction, and precision energy accumulation.
+
+```python
+from constraint_theory.temporal import TemporalAgent
+
+agent = TemporalAgent(decay_rate=0.8)
+for step in range(100):
+    update = agent.observe(x, y)
+    if update.is_anomaly:
+        print("Anomaly at step", step)
+```
+
+### 3. Adaptive Tolerance (`constraint_theory.adaptive`)
+Formula `ε(c) = min(k/c, ε_max)` — as manifold curvature grows, snapping precision tightens. Includes region classification (far → approaching → near → critical → singular).
+
+```python
+from constraint_theory.adaptive import AdaptiveTolerance
+
+tol = AdaptiveTolerance(k=0.5)
+eps_at_high_curve = tol(100.0)  # 0.005
+```
+
+### 4. PLATO Tile Interface (`constraint_theory.plato`)
+Domain-scored knowledge tiles with relevance decay, reliability tracking, and composite scoring. Includes a lightweight in-memory store for prototyping.
+
+```python
+from constraint_theory.plato import PlatoTile, PlatoTileStore
+
+tile = PlatoTile(id="ct.001", domain="constraint-theory.eisenstein")
+store = PlatoTileStore()
+store.put(tile)
+```
+
+### 5. Baton Shard (`constraint_theory.baton`)
+Split a context dict into three shards: `artifacts`, `reasoning`, `blockers`. Includes integrity hashing, JSON serialisation, and structural diffs.
+
+```python
+from constraint_theory.baton import BatonShard, split_context
+
+ctx = {"version": "1", "artifacts": {"data.txt": "..."}}
+shard = split_context(ctx)
+shard.add_blocker("Missing edge case")
+```
+
+## Module Reference
+
+| Module | Classes / Functions | Tests |
+|--------|-------------------|-------|
+| `eisenstein` | `snap`, `A2Point`, `Dodecet`, `encode`, `decode`, `norm_sq`, `classify_chamber` | 36 |
+| `temporal` | `TemporalAgent`, `snap_to_eisenstein`, `deadband_funnel` | 16 |
+| `adaptive` | `AdaptiveTolerance`, `adaptive_epsilon`, `classify_region` | 12 |
+| `plato` | `PlatoTile`, `PlatoTileStore` | 20 |
+| `baton` | `BatonShard`, `split_context`, `merge_shards`, `diff_shards` | 18 |
+
+**Total: 100+ tests** covering all modules.
+
+## License
+
+MIT
