@@ -1,0 +1,26 @@
+# 🚫 Python cache — NEVER commit these
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# 🚫 Build artifacts — NEVER commit these
+dist/
+*.whl
+*.tar.gz
+*.egg
+
+# 🚫 Environment files
+.env
+.venv/
+venv/
+env/
+
+# 🚫 OS files
+.DS_Store
+Thumbs.db
+
+# 🚫 IDE files
+.vscode/
+.idea/
+*.swp
