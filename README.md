@@ -85,6 +85,14 @@ shard.add_blocker("Missing edge case")
 
 **Total: 100+ tests** covering all modules.
 
+## Related Projects
+
+| Repo | Connection |
+|------|-----------|
+| [eisenstein-embed](https://github.com/SuperInstance/eisenstein-embed) | 5-layer matching cascade using Eisenstein lattice arithmetic and adaptive tolerance |
+| [tensor-spline](https://github.com/SuperInstance/tensor-spline) | SplineLinear compression built on Eisenstein lattices |
+| [plato-training](https://github.com/SuperInstance/plato-training) | Micro model training with PLATO tile protocol |
+
 ## License
 
 MIT
