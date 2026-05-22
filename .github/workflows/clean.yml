@@ -1,0 +1,42 @@
+name: Clean Code Check
+
+on: [push, pull_request]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check for blocked files
+        run: |
+          BLOCKED=0
+          
+          # Check for __pycache__
+          if find . -name '__pycache__' -not -path './.git/*' | grep -q .; then
+            echo "❌ __pycache__ directories found!"
+            find . -name '__pycache__' -not -path './.git/*'
+            BLOCKED=1
+          fi
+          
+          # Check for .pyc files
+          if find . -name '*.pyc' -not -path './.git/*' | grep -q .; then
+            echo "❌ .pyc files found!"
+            find . -name '*.pyc' -not -path './.git/*'
+            BLOCKED=1
+          fi
+          
+          # Check for wheel files
+          if find . -name '*.whl' -not -path './.git/*' | grep -q .; then
+            echo "❌ .whl files found!"
+            find . -name '*.whl' -not -path './.git/*'
+            BLOCKED=1
+          fi
+          
+          if [ "$BLOCKED" = "1" ]; then
+            echo ""
+            echo "🔥 Clean code check FAILED — remove blocked files and commit again."
+            exit 1
+          fi
+          
+          echo "✅ Clean code check PASSED"

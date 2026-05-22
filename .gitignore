@@ -1,10 +1,31 @@
+# Python cache
 __pycache__/
+*.pyc
+*.pyo
 *.py[cod]
 *.egg-info/
+.pytest_cache/
+
+# Build artifacts
 dist/
 build/
-.pytest_cache/
+*.whl
+*.tar.gz
+*.egg
 *.so
-.venv/
-node_modules/
 
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+node_modules/
