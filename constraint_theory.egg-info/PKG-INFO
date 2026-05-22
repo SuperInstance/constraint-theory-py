@@ -1,12 +1,12 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: constraint-theory
 Version: 0.3.0
 Summary: Pure Python Constraint Theory — temporal constraints, Eisenstein lattices, adaptive tolerance, PLATO tiles, baton shards
-Home-page: UNKNOWN
 Author: SuperInstance
-Author-email: contact@superinstance.ai
+Author-email: SuperInstance <contact@superinstance.ai>
+Maintainer-email: SuperInstance <contact@superinstance.ai>
 License: MIT
-Platform: UNKNOWN
+Keywords: constraint-theory,temporal-constraints,eisenstein-lattice,dodecet,plato,adaptive-tolerance,manifold
 Classifier: Development Status :: 4 - Beta
 Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: Science/Research
@@ -26,6 +26,11 @@ Classifier: Typing :: Typed
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0; extra == "dev"
+Requires-Dist: mypy>=1.0; extra == "dev"
+Dynamic: author
+Dynamic: requires-python
 
 # Constraint Theory v0.3.0
 
@@ -114,8 +119,14 @@ shard.add_blocker("Missing edge case")
 
 **Total: 100+ tests** covering all modules.
 
+## Related Projects
+
+| Repo | Connection |
+|------|-----------|
+| [eisenstein-embed](https://github.com/SuperInstance/eisenstein-embed) | 5-layer matching cascade using Eisenstein lattice arithmetic and adaptive tolerance |
+| [tensor-spline](https://github.com/SuperInstance/tensor-spline) | SplineLinear compression built on Eisenstein lattices |
+| [plato-training](https://github.com/SuperInstance/plato-training) | Micro model training with PLATO tile protocol |
+
 ## License
 
 MIT
-
-
